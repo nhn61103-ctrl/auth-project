@@ -1,0 +1,5 @@
+{
+  "name": "TXA Security",
+  "description": "A secure licensing and authentication platform for software developers with AES-256 encryption and cloud variables.",
+  "requestFramePermissions": []
+}

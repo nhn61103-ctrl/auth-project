@@ -1,0 +1,6 @@
+/* TXA Auth - index.css */
+/* This file intentionally left minimal. All styles are in index.html via Tailwind CDN. */
+.custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }

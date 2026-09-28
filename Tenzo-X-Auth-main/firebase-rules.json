@@ -1,0 +1,50 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "resellers": {
+      ".read": "auth != null",
+      "$hash": {
+        ".write": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'"
+      }
+    },
+
+    "applications": {
+      "$secret": {
+        ".read": "auth != null && root.child('customers').child(auth.token.email.replace('.', ',')).child('secret').val() === $secret",
+        ".write": "auth != null && root.child('customers').child(auth.token.email.replace('.', ',')).child('secret').val() === $secret"
+      }
+    },
+
+    "webhookSettings": {
+      "$secret": {
+        ".read": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'",
+        ".write": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'"
+      }
+    },
+
+    "customers": {
+      ".read": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'",
+      "$emailKey": {
+        ".read": "auth != null && auth.token.email.replace('.', ',') === $emailKey",
+        ".write": "auth != null && (auth.token.email.replace('.', ',') === $emailKey || auth.token.email === '<YOUR_ADMIN_EMAIL>')"
+      }
+    },
+
+    "system": {
+      "stats": {
+        ".read": true,
+        ".write": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'"
+      },
+      "plans": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'"
+      },
+      "config": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email === '<YOUR_ADMIN_EMAIL>'"
+      }
+    }
+  }
+}
